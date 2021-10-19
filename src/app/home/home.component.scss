@@ -11,6 +11,7 @@
   right: 12.7%;
   width: 100vw;
   background-image: url("/assets/background-destaque-home.jpg");
+  background-size: auto;
   background-position: top right;
   top: -20px;
   background-repeat: no-repeat;
@@ -67,4 +68,10 @@ img{
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 30px;
+}
+
+@media (min-width: 700px){
+  .header{
+    background-size: 100vw;
+  }
 }
