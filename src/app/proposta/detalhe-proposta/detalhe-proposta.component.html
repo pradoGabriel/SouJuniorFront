@@ -21,19 +21,23 @@
               <img [src]="proposta.empresaJr.imagemPerfil" alt="">
               <h2>{{proposta.empresaJr.nomeFantasia}}</h2>
               <p>{{proposta.empresaJr.descricao}}</p>
-                <h3><mdb-icon fas icon="address-book"></mdb-icon> {{proposta.empresaJr.endereco.logradouro}},
+                <h3><mdb-icon fas icon="map-marked"></mdb-icon> {{proposta.empresaJr.endereco.logradouro}},
                   {{proposta.empresaJr.endereco.numero}},
                   {{proposta.empresaJr.endereco.complemento}},
                   {{proposta.empresaJr.endereco.bairro}},
                   {{proposta.empresaJr.endereco.cidade}},
                   {{proposta.empresaJr.endereco.estado}},
                   {{proposta.empresaJr.endereco.cep}}</h3>
+                  <div *ngIf="proposta.isAceita === true" >
+                    <h3><mdb-icon fas icon="address-book"></mdb-icon>
+                      {{proposta.empresaJr.telefone}}, {{proposta.empresaJr.email}}</h3>
+                  </div>
             </article>
             <article>
               <h1 class="h2 mb-4">Proposta</h1>
               <h2>{{proposta.titulo}}</h2>
               <p>{{proposta.descricao}}</p>
-              <p>{{proposta.dataCriacao}}</p>
+              <p>{{proposta.dataCriacao.substring(0,10).replace("-","/").replace("-","/")}}</p>
             </article>
 
           </div>
@@ -70,19 +74,23 @@
               <img [src]="proposta.empreendedor.imagemPerfil" alt="">
               <h2>{{proposta.empreendedor.nomeFantasia}}</h2>
               <p>{{proposta.empreendedor.descricao}}</p>
-                <h3><mdb-icon fas icon="address-book"></mdb-icon> {{proposta.empreendedor.endereco.logradouro}},
+                <h3><mdb-icon fas icon="map-marked"></mdb-icon> {{proposta.empreendedor.endereco.logradouro}},
                   {{proposta.empreendedor.endereco.numero}},
                   {{proposta.empreendedor.endereco.complemento}},
                   {{proposta.empreendedor.endereco.bairro}},
                   {{proposta.empreendedor.endereco.cidade}},
                   {{proposta.empreendedor.endereco.estado}},
                   {{proposta.empreendedor.endereco.cep}}</h3>
+                  <div *ngIf="proposta.isAceita === true" >
+                    <h3><mdb-icon fas icon="address-book"></mdb-icon>
+                      {{proposta.empreendedor.telefone}},  {{proposta.empreendedor.email}}</h3>
+                  </div>
             </article>
             <article>
               <h1 class="h2 mb-4">Proposta</h1>
               <h2>{{proposta.titulo}}</h2>
               <p>{{proposta.descricao}}</p>
-              <p>{{proposta.dataCriacao}}</p>
+              <p>{{proposta.dataCriacao.substring(0,10).replace("-","/").replace("-","/")}}</p>
             </article>
 
           </div>

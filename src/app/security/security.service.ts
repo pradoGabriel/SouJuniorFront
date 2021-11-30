@@ -41,6 +41,7 @@ export class SecurityService {
   }
 
   chargeUser(){
+    console.log("teste");
     if(localStorage.getItem(this.userid)){
       this.usuarioService.getById(localStorage.getItem(this.userid)).subscribe
       (user => this.user = user
