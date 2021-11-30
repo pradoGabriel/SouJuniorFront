@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { usuarioCreatioDTO } from 'src/app/model/usuario.model';
+import { usuarioCreatioDTO, usuarioDTO } from 'src/app/model/usuario.model';
 import { AutocompleteRamoAtuacaoComponent } from 'src/app/ramoAtuacao/autocomplete-ramo-atuacao/autocomplete-ramo-atuacao.component';
 
 import { empreendedorCreationDTO } from '../../model/empreendedor.model';
@@ -15,14 +15,17 @@ export class FormMicroempresaComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   form: FormGroup;
+  mascaraTelefone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/];
+  mascaraCnpj = [/[0-9]/, /\d/, '.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/,];
+  mascaraCep = [/[0-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
 
   @Input()
-  usuario: usuarioCreatioDTO;
+  usuario: usuarioDTO;
 
   @ViewChild(AutocompleteRamoAtuacaoComponent) ramo;
 
   @Output()
-  onSaveChanges: EventEmitter<empreendedorCreationDTO> = new EventEmitter<empreendedorCreationDTO>();
+  onSaveChanges: EventEmitter<usuarioDTO> = new EventEmitter<usuarioDTO>();
 
 
 
@@ -36,6 +39,7 @@ export class FormMicroempresaComponent implements OnInit {
       telefone: '',
       imagemPerfil: '',
       empreendedor: new FormGroup( {
+        id: new FormControl(''),
         cnpj: new FormControl(''),
         descricao: new FormControl(''),
         dataCriacao: new FormControl(''),
@@ -44,6 +48,7 @@ export class FormMicroempresaComponent implements OnInit {
         ramoAtuacaoId: new FormControl(),
       }),
       endereco: new FormGroup( {
+        id: new FormControl(''),
         cep: new FormControl(''),
         estado: new FormControl(''),
         bairro: new FormControl(''),
@@ -57,6 +62,7 @@ export class FormMicroempresaComponent implements OnInit {
 
     if (this.usuario !== undefined){
       this.form.patchValue(this.usuario);
+      console.log(this.usuario);
     }
 
   }
@@ -66,7 +72,9 @@ export class FormMicroempresaComponent implements OnInit {
   }
 
   saveChanges(){
+    console.log(this.form.value);
     this.form.get('empreendedor.ramoAtuacaoId').setValue(this.ramo.ramoSelecionado.id);
+
     this.onSaveChanges.emit(this.form.value);
   }
 

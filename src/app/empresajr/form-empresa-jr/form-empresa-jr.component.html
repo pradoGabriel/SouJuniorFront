@@ -1,8 +1,6 @@
 
 <div class="container">
 
-<p class="h2 mb-4e" id="title">Cadastro de Empresa Jr</p>
-
     <form (submit)="saveChanges()" [formGroup]="form" class="text-center">
       <mat-stepper orientation="vertical" [linear]="false" #stepper>
       <mat-step [stepControl]="form" label="Dados do Usuario" class="Stepper">
@@ -17,7 +15,7 @@
           <div class="col">
             <!-- Telefone-->
             <label for="telefone"> Telefone</label>
-            <input type="number" formControlName="telefone" id="telefone" class="form-control" placeholder="Telefone">
+            <input [textMask]="{mask: mascaraTelefone}" type="text" formControlName="telefone" id="telefone" class="form-control" placeholder="Telefone">
           </div>
           <div class="col">
             <!-- Email-->
@@ -59,7 +57,7 @@
           <div class="col">
             <!-- CNPJ-->
             <label for="cnpj"> Cnpj</label>
-            <input type="number" formControlName="cnpj" id="cnpj" class="form-control" placeholder="Cnpj">
+            <input [textMask]="{mask: mascaraCnpj}" type="text" formControlName="cnpj" id="cnpj" class="form-control" placeholder="Cnpj">
           </div>
         </div>
 
@@ -106,7 +104,7 @@
           <div class="col">
             <!-- Cep -->
               <label for="cep"> Cep </label>
-              <input type="number" formControlName="cep"  id="cep" class="form-control" placeholder="Digite o Cep">
+              <input [textMask]="{mask: mascaraCep}" type="text" formControlName="cep"  id="cep" class="form-control" placeholder="Digite o Cep">
           </div>
 
           <div class="col" id="logra">
@@ -153,8 +151,11 @@
           <div class="col">
             <button matStepperPrevious mdbBtn color="light" block="true" class="my-4" type="button">Voltar</button>
           </div>
-          <div class="col">
+          <div class="col" *ngIf="!usuario">
             <button mdbBtn color="success" block="true" class="my-4" type="submit">Cadastrar</button>
+          </div>
+          <div class="col" *ngIf="usuario">
+            <button mdbBtn color="success" block="true" class="my-4" type="submit">Salvar</button>
           </div>
         </div>
       </mat-step>

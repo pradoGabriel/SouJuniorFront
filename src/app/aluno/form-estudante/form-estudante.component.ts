@@ -11,11 +11,18 @@ export class FormAlunoComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { }
 
+  mascaraTelefone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/];
   form: FormGroup;
   periodo: { key: number; value: string;}[]
+  periodos:[
+    {value: 1, viewValue: 'Manhã'},
+    {value: 2, viewValue: 'Tarde'},
+    {value: 3, viewValue: 'Noite'},
+    {value: 4, viewValue: 'Integral'},
+  ];
 
   @Input()
-  estudante: usuarioCreatioDTO;
+  usuario: usuarioCreatioDTO;
 
   @Output()
   onSaveChanges: EventEmitter<usuarioCreatioDTO> = new EventEmitter<usuarioCreatioDTO>();
@@ -46,8 +53,8 @@ export class FormAlunoComponent implements OnInit {
       }),
     });
 
-    if (this.estudante !== undefined){
-      this.form.patchValue(this.estudante);
+    if (this.usuario !== undefined){
+      this.form.patchValue(this.usuario);
     }
 
 

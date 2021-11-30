@@ -9,6 +9,11 @@
         <div *ngIf="cardImageBase64">
             <img [src]="cardImageBase64"/>
         </div>
+        <div *ngIf="urlCurrentImage">
+          <div *ngIf="urlCurrentImage"!='data:image/png;base64,null'>
+            <img [src]="urlCurrentImage"/>
+          </div>
+        </div>
     </div>
     <br>
 </div>

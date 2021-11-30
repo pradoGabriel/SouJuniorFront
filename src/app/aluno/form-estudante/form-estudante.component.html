@@ -1,7 +1,4 @@
 <div class="container">
-  <p class="h2 mb-4" id="title">Cadastro de Estudante</p>
-
-
     <form (ngSubmit)="saveChanges()" [formGroup]="form" class="text-center">
       <mat-stepper orientation="vertical" [linear]="false" #stepper>
       <mat-step [stepControl]="form" label="Dados do Usuario" class="Stepper">
@@ -16,7 +13,7 @@
           <div class="col">
             <!-- Telefone-->
             <label for="telefone"> Telefone</label>
-            <input type="number" formControlName="telefone" id="telefone" class="form-control" placeholder="Telefone">
+            <input [textMask]="{mask: mascaraTelefone}" type="text" formControlName="telefone" id="telefone" class="form-control" placeholder="Telefone">
           </div>
           <div class="col">
             <!-- Email-->
@@ -40,7 +37,7 @@
         </div>
 
         <app-input-img
-          [urlCurrentImage]="estudante?.imagemPerfil"
+          [urlCurrentImage]="usuario?.imagemPerfil"
           (onImageSelected)="onImageSelected($event)">Selecione uma Imagem</app-input-img>
 
         <div>

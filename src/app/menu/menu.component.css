@@ -8,3 +8,11 @@ mat-toolbar{
 mat-icon{
   color: rgb(190, 32, 143);
 }
+
+img{
+  background-color: red;
+  width: 30px;
+  margin-bottom: 2px;
+}
+
+

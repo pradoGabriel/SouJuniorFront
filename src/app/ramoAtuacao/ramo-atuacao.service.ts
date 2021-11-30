@@ -10,7 +10,7 @@ import { ramoAtuacaoDTO } from '../model/ramoAtuacao.model';
 export class RamoAtuacaoService {
 
   constructor(private http: HttpClient) { }
-  private apiURL = environment.apiURL + '/RamoAtuacao/GetAll';
+  private apiURL = environment.apiURL + 'RamoAtuacao/GetAll';
 
   getAll(): Observable<ramoAtuacaoDTO[]>{
     return this.http.get<ramoAtuacaoDTO[]>(this.apiURL);

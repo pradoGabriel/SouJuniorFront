@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ramoAtuacaoDTO } from 'src/app/model/ramoAtuacao.model';
 import { AutocompleteRamoAtuacaoComponent } from 'src/app/ramoAtuacao/autocomplete-ramo-atuacao/autocomplete-ramo-atuacao.component';
 import { empresajrCreationDTO } from '../../model/empresa-jr.model';
-import { usuarioCreatioDTO } from '../../model/usuario.model';
+import { usuarioCreatioDTO, usuarioDTO } from '../../model/usuario.model';
 
 
 @Component({
@@ -16,9 +16,12 @@ export class FormEmpresaJrComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   form: FormGroup;
+  mascaraTelefone = ['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/,'-', /\d/, /\d/, /\d/, /\d/];
+  mascaraCep = [/[0-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+  mascaraCnpj = [/[0-9]/, /\d/, '.', /\d/, /\d/, /\d/,'.', /\d/, /\d/, /\d/,'/', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/,];
 
   @Input()
-  usuario: usuarioCreatioDTO;
+  usuario: usuarioDTO;
 
   @ViewChild(AutocompleteRamoAtuacaoComponent) ramo;
 
@@ -37,6 +40,7 @@ export class FormEmpresaJrComponent implements OnInit {
       telefone: '',
       imagemPerfil: '',
       empresaJr: new FormGroup( {
+        id: new FormControl(''),
         cnpj: new FormControl(''),
         descricao: new FormControl(''),
         dataCriacao: new FormControl(''),
@@ -45,6 +49,7 @@ export class FormEmpresaJrComponent implements OnInit {
         ramoAtuacaoId: new FormControl(),
       }),
       endereco: new FormGroup( {
+        id: new FormControl(''),
         cep: new FormControl(''),
         estado: new FormControl(''),
         bairro: new FormControl(''),
@@ -69,13 +74,13 @@ export class FormEmpresaJrComponent implements OnInit {
   }
 
   saveChanges(){
-    console.log(this.ramo.ramoSelecionado.id);
+    console.log(this.usuario);
     this.form.get('empresaJr.ramoAtuacaoId').setValue(this.ramo.ramoSelecionado.id);
     this.onSaveChanges.emit(this.form.value);
   }
 
   getErrorMessageFieldName(){
-    const field = this.form.get('name');
+    const field = this.form.get('nome');
 
     if (field.hasError('required')){
       return 'The name field is required';

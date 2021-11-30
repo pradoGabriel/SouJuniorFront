@@ -19,8 +19,8 @@ export class CreateEmpresaJrComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveChanges(usuarioCreatioDTO: usuarioCreatioDTO, ){
-
+  saveChanges(usuarioCreatioDTO: usuarioCreatioDTO){
+    console.log(usuarioCreatioDTO);
     usuarioCreatioDTO.empresaJr.cnpj = ""+usuarioCreatioDTO.empresaJr.cnpj;
     usuarioCreatioDTO.telefone = ""+usuarioCreatioDTO.telefone;
     usuarioCreatioDTO.endereco.cep = ""+usuarioCreatioDTO.endereco.cep;

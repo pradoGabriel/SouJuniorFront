@@ -60,6 +60,7 @@ export class AutocompleteRamoAtuacaoComponent implements OnInit {
         map(value => this.findOption(value))
       );
     });
+    console.log(this.ramosAtuacao);
   }
 
   optionSelected(event: MatAutocompleteSelectedEvent) {

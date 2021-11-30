@@ -4,7 +4,9 @@
 
 export const environment = {
   production: "false",
-  apiURL : 'https://soujuniorapi20211018170358.azurewebsites.net/api/v1/'
+  apiURL : 'https://soujuniorapibeta.azurewebsites.net/api/v1/'
+
+  /* apiURL : 'https://localhost:44388/api/v1/' */
 };
 
 /*

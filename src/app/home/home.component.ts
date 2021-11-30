@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { SecurityService } from '../security/security.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,10 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private securityService: SecurityService) { }
 
   ngOnInit(): void {
+    this.securityService.chargeUser();
   }
 
   dynamicSlides = [

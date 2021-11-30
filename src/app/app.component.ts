@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'mdb-angular-free';
-
   successAlert = false;
 
   copyToClipboard(value: string): void {
